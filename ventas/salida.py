@@ -2,12 +2,11 @@
 
 import csv
 import json
-from decimal import Decimal
 from pathlib import Path
 
 
 def escribir_informes(
-    directorio: Path, resumen: dict, mensual: dict[str, Decimal]
+    directorio: Path, resumen: dict, mensual: dict[str, float]
 ) -> None:
     directorio.mkdir(parents=True, exist_ok=True)
     with (directorio / "mensual.csv").open("w", encoding="utf-8", newline="") as archivo:

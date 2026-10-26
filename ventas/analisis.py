@@ -1,24 +1,21 @@
 """Cálculos de negocio sobre ventas ya normalizadas."""
 
 from collections import defaultdict
-from decimal import Decimal, ROUND_HALF_UP
 
 from ventas.modelos import Venta
 
-CENTAVO = Decimal("0.01")
+
+def a_dos_decimales(valor: float) -> float:
+    return round(valor, 2)
 
 
-def a_dos_decimales(valor: Decimal) -> Decimal:
-    return valor.quantize(CENTAVO, rounding=ROUND_HALF_UP)
-
-
-def resumir(ventas: list[Venta]) -> tuple[dict, dict[str, Decimal]]:
+def resumir(ventas: list[Venta]) -> tuple[dict, dict[str, float]]:
     if not ventas:
         raise ValueError("No hay ventas para analizar")
 
-    total = sum((venta.importe for venta in ventas), Decimal("0"))
+    total = sum(venta.importe for venta in ventas)
     tickets = {venta.id_ticket for venta in ventas}
-    por_mes: defaultdict[str, Decimal] = defaultdict(lambda: Decimal("0"))
+    por_mes: defaultdict[str, float] = defaultdict(float)
     unidades_por_producto: defaultdict[str, int] = defaultdict(int)
     for venta in ventas:
         por_mes[venta.fecha.strftime("%Y-%m")] += venta.importe
@@ -26,9 +23,9 @@ def resumir(ventas: list[Venta]) -> tuple[dict, dict[str, Decimal]]:
 
     promedio = total / len(tickets)
     resumen = {
-        "facturacion_total": float(a_dos_decimales(total)),
+        "facturacion_total": a_dos_decimales(total),
         "cantidad_tickets": len(tickets),
-        "ticket_promedio": float(a_dos_decimales(promedio)),
+        "ticket_promedio": a_dos_decimales(promedio),
         "top5_productos": [
             {"producto": producto, "unidades": unidades}
             for producto, unidades in sorted(

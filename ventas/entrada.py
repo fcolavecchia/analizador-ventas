@@ -2,8 +2,8 @@
 
 import csv
 import json
+import math
 from datetime import date
-from decimal import Decimal, InvalidOperation
 from pathlib import Path
 from typing import Any
 
@@ -35,13 +35,13 @@ def cargar_ventas(ruta: Path) -> list[Venta]:
                 if fecha.isoformat() != fecha_texto:
                     raise ValueError("la fecha debe tener formato AAAA-MM-DD")
                 cantidad = int(fila["cantidad"])
-                precio = Decimal(fila["precio_unitario"])
-            except (ValueError, InvalidOperation, TypeError) as error:
+                precio = float(fila["precio_unitario"])
+            except (ValueError, TypeError) as error:
                 raise ValueError(f"Datos inválidos en la fila {numero_fila}: {error}") from error
 
             if cantidad <= 0:
                 raise ValueError(f"La cantidad debe ser mayor que cero en la fila {numero_fila}")
-            if not precio.is_finite() or precio <= 0:
+            if not math.isfinite(precio) or precio <= 0:
                 raise ValueError(f"El precio debe ser mayor que cero en la fila {numero_fila}")
 
             ventas.append(
@@ -63,14 +63,11 @@ def _error_orden(numero: int, detalle: str) -> ValueError:
     return ValueError(f"Orden {numero} inválida: {detalle}")
 
 
-def _decimal_json(valor: Any, numero_orden: int, numero_item: int) -> Decimal:
+def _precio_json(valor: Any, numero_orden: int, numero_item: int) -> float:
     if isinstance(valor, bool) or not isinstance(valor, (int, float)):
         raise _error_orden(numero_orden, f"items[{numero_item}].unit_price debe ser un número")
-    try:
-        precio = Decimal(str(valor))
-    except InvalidOperation as error:
-        raise _error_orden(numero_orden, f"items[{numero_item}].unit_price inválido") from error
-    if not precio.is_finite() or precio <= 0:
+    precio = float(valor)
+    if not math.isfinite(precio) or precio <= 0:
         raise _error_orden(numero_orden, f"items[{numero_item}].unit_price debe ser mayor que cero")
     return precio
 
@@ -142,7 +139,7 @@ def cargar_ventas_json(ruta: Path) -> list[Venta]:
                     numero_orden,
                     f"items[{numero_item}].units debe ser mayor que cero",
                 )
-            precio = _decimal_json(item["unit_price"], numero_orden, numero_item)
+            precio = _precio_json(item["unit_price"], numero_orden, numero_item)
             producto = item["item"]
             categoria = item["category"]
             if not isinstance(producto, str) or not isinstance(categoria, str):
