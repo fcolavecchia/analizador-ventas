@@ -1,0 +1,2 @@
+"""Analizador de ventas."""
+
