@@ -1,0 +1,10 @@
+id_ticket,fecha,producto,categoria,cantidad,precio_unitario,sucursal
+T001,2026-01-05,Notebook,Computación,1,800000,Centro
+T001,2026-01-05,Mouse,Periféricos,2,10000,Centro
+T002,2026-01-20,Cable USB,Accesorios,10,2000,Norte
+T003,2026-02-03,Cable USB,Accesorios,5,2000,Centro
+T003,2026-02-03,Teclado,Periféricos,3,30000,Centro
+T004,2026-02-28,Monitor,Computación,2,250000,Norte
+T004,2026-02-28,Auriculares,Audio,4,15000,Norte
+T005,2026-03-10,Mouse,Periféricos,1,10000,Centro
+T005,2026-03-10,Webcam,Periféricos,1,40000,Centro
