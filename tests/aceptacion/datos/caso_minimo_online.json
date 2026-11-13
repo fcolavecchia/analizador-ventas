@@ -1,0 +1,27 @@
+[
+  {
+    "order_id": "W001",
+    "date": "2026-01-15T10:20:00",
+    "status": "completed",
+    "items": [
+      {"item": "Cable USB", "category": "Accesorios", "units": 5, "unit_price": 2000},
+      {"item": "Mouse", "category": "Periféricos", "units": 1, "unit_price": 12000}
+    ]
+  },
+  {
+    "order_id": "W002",
+    "date": "2026-02-10T18:45:00",
+    "status": "cancelled",
+    "items": [
+      {"item": "Notebook", "category": "Computación", "units": 1, "unit_price": 800000}
+    ]
+  },
+  {
+    "order_id": "W003",
+    "date": "2026-03-01T09:05:00",
+    "status": "completed",
+    "items": [
+      {"item": "Webcam", "category": "Periféricos", "units": 3, "unit_price": 40000}
+    ]
+  }
+]
