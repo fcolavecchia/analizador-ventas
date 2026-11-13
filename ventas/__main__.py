@@ -4,17 +4,20 @@ import argparse
 from pathlib import Path
 
 from .analisis import analizar
-from .lector import cargar_ventas
+from .lector import cargar_archivo
 from .salidas import escribir_salidas
 
 
 def main() -> int:
-    parser = argparse.ArgumentParser(description="Resume ventas desde un archivo CSV")
-    parser.add_argument("archivo", type=Path)
+    parser = argparse.ArgumentParser(description="Resume ventas desde archivos CSV o JSON")
+    parser.add_argument("archivo", type=Path, nargs="+")
     parser.add_argument("--salida", type=Path, required=True)
     args = parser.parse_args()
 
-    resultado = analizar(cargar_ventas(args.archivo))
+    ventas = []
+    for archivo in args.archivo:
+        ventas.extend(cargar_archivo(archivo))
+    resultado = analizar(ventas)
     escribir_salidas(resultado, args.salida)
     print(f"Facturación total: {resultado['facturacion_total']:.2f}")
     print(f"Cantidad de tickets: {resultado['cantidad_tickets']}")
