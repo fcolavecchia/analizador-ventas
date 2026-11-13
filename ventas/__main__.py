@@ -22,8 +22,8 @@ def main() -> int:
         ]
         if not ventas:
             raise ValueError("Los archivos indicados no contienen ventas válidas")
-        resumen, mensual = resumir(ventas)
-        escribir_informes(argumentos.salida, resumen, mensual)
+        resumen, mensual, categorias = resumir(ventas)
+        escribir_informes(argumentos.salida, resumen, mensual, categorias)
     except (OSError, ValueError) as error:
         parser.error(str(error))
 

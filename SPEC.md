@@ -1,4 +1,4 @@
-# Analizador de ventas — v2
+# Analizador de ventas — v3
 
 ## Objetivo
 
@@ -66,6 +66,9 @@ Correspondencia con los campos del CSV:
 - **Órdenes canceladas** (`status == "cancelled"`): se excluyen por completo. No suman facturación, ni unidades, ni cuentan como ticket.
 - **Duplicados**: no se esperan. Los identificadores del CSV y del JSON no se superponen. No se deduplica.
 - Los productos se identifican por nombre exacto en ambas fuentes.
+- **Facturación por categoría**: facturación y unidades agrupadas por `categoria`. Se ordena por facturación
+  descendente; si dos categorías facturan lo mismo, alfabéticamente por nombre. Solo se listan las categorías con
+  ventas. Las órdenes canceladas no cuentan, igual que en el resto de los cálculos.
 - Los importes se informan redondeados a 2 decimales.
 
 ## Interfaz
@@ -82,7 +85,7 @@ uv run python -m ventas <archivo> [<archivo> ...] --salida <directorio>
 
 ## Salidas
 
-Sin cambios respecto de v1.
+Las de v2, más `categorias.csv`.
 
 `<directorio>/mensual.csv`, ordenado por mes ascendente:
 
@@ -104,6 +107,13 @@ mes,facturacion
 }
 ```
 
+`<directorio>/categorias.csv`, en el orden definido arriba:
+
+```
+categoria,facturacion,unidades
+Computación,1300000.00,3
+```
+
 ## Restricciones
 
 - No modificar los archivos de entrada.
@@ -115,4 +125,6 @@ mes,facturacion
 - Todos los criterios de v1 se siguen cumpliendo.
 - Con `tests/aceptacion/datos/caso_minimo_online.json` (calculado a mano), solo o combinado con `caso_minimo.csv`, los resultados coinciden con los esperados.
 - Combinar fuentes equivale a sumar sus resultados (facturación, tickets, meses).
+- Con los casos mínimos de `tests/aceptacion/datos/` (calculados a mano), `categorias.csv` coincide con lo esperado.
+- La facturación por categoría suma la facturación total.
 - `uv run pytest` pasa sin errores.

@@ -10,7 +10,7 @@ def a_dos_decimales(valor: Decimal) -> Decimal:
     return valor.quantize(Decimal("0.01"))
 
 
-def resumir(ventas: list[Venta]) -> tuple[dict, dict[str, Decimal]]:
+def resumir(ventas: list[Venta]) -> tuple[dict, dict[str, Decimal], dict[str, tuple[Decimal, int]]]:
     if not ventas:
         raise ValueError("No hay ventas para analizar")
 
@@ -18,9 +18,14 @@ def resumir(ventas: list[Venta]) -> tuple[dict, dict[str, Decimal]]:
     tickets = {venta.id_ticket for venta in ventas}
     por_mes: defaultdict[str, Decimal] = defaultdict(lambda: Decimal("0.00"))
     unidades_por_producto: defaultdict[str, int] = defaultdict(int)
+    por_categoria: defaultdict[str, list[Decimal | int]] = defaultdict(
+        lambda: [Decimal("0.00"), 0]
+    )
     for venta in ventas:
         por_mes[venta.fecha.strftime("%Y-%m")] += venta.importe
         unidades_por_producto[venta.producto] += venta.cantidad
+        por_categoria[venta.categoria][0] += venta.importe
+        por_categoria[venta.categoria][1] += venta.cantidad
 
     promedio = total / len(tickets)
     resumen = {
@@ -35,4 +40,8 @@ def resumir(ventas: list[Venta]) -> tuple[dict, dict[str, Decimal]]:
         ],
     }
     mensual = {mes: a_dos_decimales(por_mes[mes]) for mes in sorted(por_mes)}
-    return resumen, mensual
+    categorias = {
+        categoria: (a_dos_decimales(valores[0]), int(valores[1]))
+        for categoria, valores in por_categoria.items()
+    }
+    return resumen, mensual, categorias

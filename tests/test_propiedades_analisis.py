@@ -31,14 +31,14 @@ def ventas_validas(draw):
 
 @given(ventas_validas())
 def test_facturacion_mensual_suma_la_facturacion_total(ventas):
-    resumen, mensual = resumir(ventas)
+    resumen, mensual, _ = resumir(ventas)
 
     assert sum(mensual.values(), Decimal("0.00")) == resumen["facturacion_total"]
 
 
 @given(ventas_validas())
 def test_tickets_y_promedio_se_calculan_a_partir_de_ids_distintos(ventas):
-    resumen, _ = resumir(ventas)
+    resumen, _, _ = resumir(ventas)
     total = sum((venta.importe for venta in ventas), Decimal("0.00"))
     cantidad_tickets = len({venta.id_ticket for venta in ventas})
 
@@ -48,7 +48,7 @@ def test_tickets_y_promedio_se_calculan_a_partir_de_ids_distintos(ventas):
 
 @given(ventas_validas())
 def test_top5_es_el_ranking_de_unidades_con_desempate_alfabetico(ventas):
-    resumen, _ = resumir(ventas)
+    resumen, _, _ = resumir(ventas)
     unidades = {}
     for venta in ventas:
         unidades[venta.producto] = unidades.get(venta.producto, 0) + venta.cantidad

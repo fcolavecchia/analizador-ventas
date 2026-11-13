@@ -118,7 +118,7 @@ def test_combina_csv_y_json_en_un_mismo_analisis(tmp_path):
     )
 
     ventas_combinadas = cargar_ventas_archivo(csv_path) + cargar_ventas_archivo(json_path)
-    resumen, mensual = resumir(ventas_combinadas)
+    resumen, mensual, _ = resumir(ventas_combinadas)
 
     assert resumen["facturacion_total"] == 20
     assert resumen["cantidad_tickets"] == 2

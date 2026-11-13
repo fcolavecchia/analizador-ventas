@@ -11,7 +11,7 @@ def test_top5_ordena_unidades_y_resuelve_empates_alfabeticamente():
         Venta("T2", date(2026, 1, 2), "Cable USB", "Accesorios", 4, 1.0, "Norte"),
     ]
 
-    resumen, _ = resumir(ventas)
+    resumen, _, _ = resumir(ventas)
 
     assert resumen["top5_productos"] == [
         {"producto": "Cable USB", "unidades": 4},
