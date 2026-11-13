@@ -11,6 +11,7 @@ def escribir_informes(
     resumen: dict,
     mensual: dict[str, Decimal],
     categorias: dict[str, tuple[Decimal, int]],
+    para_revisar: list[tuple[str, str]] = (),
 ) -> None:
     directorio.mkdir(parents=True, exist_ok=True)
     with (directorio / "mensual.csv").open("w", encoding="utf-8", newline="") as archivo:
@@ -32,3 +33,8 @@ def escribir_informes(
             (categoria, f"{facturacion:.2f}", unidades)
             for categoria, (facturacion, unidades) in categorias_ordenadas
         )
+
+    with (directorio / "revision.csv").open("w", encoding="utf-8", newline="") as archivo:
+        escritor = csv.writer(archivo)
+        escritor.writerow(["producto", "categoria_original"])
+        escritor.writerows(para_revisar)
