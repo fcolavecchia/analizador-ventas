@@ -4,6 +4,7 @@ import csv
 import json
 import math
 from datetime import date
+from decimal import Decimal, InvalidOperation
 from pathlib import Path
 from typing import Any
 
@@ -35,13 +36,13 @@ def cargar_ventas(ruta: Path) -> list[Venta]:
                 if fecha.isoformat() != fecha_texto:
                     raise ValueError("la fecha debe tener formato AAAA-MM-DD")
                 cantidad = int(fila["cantidad"])
-                precio = float(fila["precio_unitario"])
-            except (ValueError, TypeError) as error:
+                precio = Decimal(fila["precio_unitario"])
+            except (ValueError, TypeError, InvalidOperation) as error:
                 raise ValueError(f"Datos inválidos en la fila {numero_fila}: {error}") from error
 
             if cantidad <= 0:
                 raise ValueError(f"La cantidad debe ser mayor que cero en la fila {numero_fila}")
-            if not math.isfinite(precio) or precio <= 0:
+            if not precio.is_finite() or precio <= 0:
                 raise ValueError(f"El precio debe ser mayor que cero en la fila {numero_fila}")
 
             ventas.append(
@@ -63,11 +64,11 @@ def _error_orden(numero: int, detalle: str) -> ValueError:
     return ValueError(f"Orden {numero} inválida: {detalle}")
 
 
-def _precio_json(valor: Any, numero_orden: int, numero_item: int) -> float:
+def _precio_json(valor: Any, numero_orden: int, numero_item: int) -> Decimal:
     if isinstance(valor, bool) or not isinstance(valor, (int, float)):
         raise _error_orden(numero_orden, f"items[{numero_item}].unit_price debe ser un número")
-    precio = float(valor)
-    if not math.isfinite(precio) or precio <= 0:
+    precio = Decimal(str(valor))
+    if not precio.is_finite() or precio <= 0:
         raise _error_orden(numero_orden, f"items[{numero_item}].unit_price debe ser mayor que cero")
     return precio
 

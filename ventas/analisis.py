@@ -1,21 +1,22 @@
 """Cálculos de negocio sobre ventas ya normalizadas."""
 
 from collections import defaultdict
+from decimal import Decimal
 
 from ventas.modelos import Venta
 
 
-def a_dos_decimales(valor: float) -> float:
-    return round(valor, 2)
+def a_dos_decimales(valor: Decimal) -> Decimal:
+    return valor.quantize(Decimal("0.01"))
 
 
-def resumir(ventas: list[Venta]) -> tuple[dict, dict[str, float]]:
+def resumir(ventas: list[Venta]) -> tuple[dict, dict[str, Decimal]]:
     if not ventas:
         raise ValueError("No hay ventas para analizar")
 
     total = sum(venta.importe for venta in ventas)
     tickets = {venta.id_ticket for venta in ventas}
-    por_mes: defaultdict[str, float] = defaultdict(float)
+    por_mes: defaultdict[str, Decimal] = defaultdict(lambda: Decimal("0.00"))
     unidades_por_producto: defaultdict[str, int] = defaultdict(int)
     for venta in ventas:
         por_mes[venta.fecha.strftime("%Y-%m")] += venta.importe

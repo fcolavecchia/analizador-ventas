@@ -2,6 +2,7 @@
 
 from dataclasses import dataclass
 from datetime import date
+from decimal import Decimal
 
 
 @dataclass(frozen=True)
@@ -11,9 +12,9 @@ class Venta:
     producto: str
     categoria: str
     cantidad: int
-    precio_unitario: float
+    precio_unitario: Decimal
     sucursal: str
 
     @property
-    def importe(self) -> float:
-        return self.cantidad * self.precio_unitario
+    def importe(self) -> Decimal:
+        return self.cantidad * Decimal(str(self.precio_unitario))
