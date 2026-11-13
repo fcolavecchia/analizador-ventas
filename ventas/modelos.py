@@ -1,4 +1,4 @@
-"""Modelos normalizados de ventas."""
+"""Tipos normalizados que usa la lógica de negocio."""
 
 from dataclasses import dataclass
 from datetime import date
@@ -18,4 +18,3 @@ class Venta:
     @property
     def importe(self) -> Decimal:
         return self.cantidad * self.precio_unitario
-

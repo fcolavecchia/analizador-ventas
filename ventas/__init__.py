@@ -1,2 +1,1 @@
-"""Analizador de ventas."""
-
+"""Análisis de ventas del comercio."""

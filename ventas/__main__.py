@@ -1,31 +1,38 @@
-"""Interfaz de línea de comandos del analizador."""
+"""Punto de entrada para ``python -m ventas``."""
 
 import argparse
 from pathlib import Path
 
-from .analisis import analizar
-from .lector import cargar_archivo
-from .salidas import escribir_salidas
+from ventas.analisis import resumir
+from ventas.entrada import cargar_ventas_archivo
+from ventas.salida import escribir_informes
 
 
 def main() -> int:
-    parser = argparse.ArgumentParser(description="Resume ventas desde archivos CSV o JSON")
-    parser.add_argument("archivo", type=Path, nargs="+")
-    parser.add_argument("--salida", type=Path, required=True)
-    args = parser.parse_args()
+    parser = argparse.ArgumentParser(description="Analiza ventas desde archivos CSV o JSON.")
+    parser.add_argument("archivos", nargs="+", type=Path, help="archivos de ventas CSV o JSON")
+    parser.add_argument("--salida", required=True, type=Path, help="directorio para los informes")
+    argumentos = parser.parse_args()
 
-    ventas = []
-    for archivo in args.archivo:
-        ventas.extend(cargar_archivo(archivo))
-    resultado = analizar(ventas)
-    escribir_salidas(resultado, args.salida)
-    print(f"Facturación total: {resultado['facturacion_total']:.2f}")
-    print(f"Cantidad de tickets: {resultado['cantidad_tickets']}")
-    print(f"Ticket promedio: {resultado['ticket_promedio']:.2f}")
-    print(f"Archivos generados en: {args.salida}")
+    try:
+        ventas = [
+            venta
+            for ruta in argumentos.archivos
+            for venta in cargar_ventas_archivo(ruta)
+        ]
+        if not ventas:
+            raise ValueError("Los archivos indicados no contienen ventas válidas")
+        resumen, mensual = resumir(ventas)
+        escribir_informes(argumentos.salida, resumen, mensual)
+    except (OSError, ValueError) as error:
+        parser.error(str(error))
+
+    print(f"Facturación total: $ {resumen['facturacion_total']:.2f}")
+    print(f"Tickets: {resumen['cantidad_tickets']}")
+    print(f"Ticket promedio: $ {resumen['ticket_promedio']:.2f}")
+    print(f"Informes guardados en: {argumentos.salida}")
     return 0
 
 
 if __name__ == "__main__":
     raise SystemExit(main())
-
