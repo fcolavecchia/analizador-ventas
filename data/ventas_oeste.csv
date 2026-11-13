@@ -1,0 +1,141 @@
+id_ticket,fecha,producto,categoria,cantidad,precio_unitario,sucursal
+OE0001,2026-04-01,Funda para teclado,,1,7000,Oeste
+OE0001,2026-04-01,Soporte para monitor,,2,15000,Oeste
+OE0002,2026-04-01,Soporte para monitor,Accesorios,2,15000,Oeste
+OE0003,2026-04-02,Teclado,perifericos,2,30000,Oeste
+OE0004,2026-04-04,Webcam,Accesorios PC,1,45000,Oeste
+OE0004,2026-04-04,Hub USB-C,Accesorios,1,25000,Oeste
+OE0005,2026-04-06,Pilas AA x4,Accesorios,6,3500,Oeste
+OE0005,2026-04-06,Pendrive,,5,8000,Oeste
+OE0006,2026-04-06,Hub USB-C,Varios,1,25000,Oeste
+OE0006,2026-04-06,Pilas AA x4,Accesorios,8,3500,Oeste
+OE0006,2026-04-06,Teclado,Periféricos,2,30000,Oeste
+OE0007,2026-04-07,Mousepad XL,Accesorios,3,9000,Oeste
+OE0008,2026-04-08,Joystick,Periféricos,2,38000,Oeste
+OE0008,2026-04-08,Soporte para monitor,Accesorios,2,15000,Oeste
+OE0009,2026-04-08,Pilas AA x4,Accesorios,6,3500,Oeste
+OE0009,2026-04-08,Hub USB-C,Accesorios,2,25000,Oeste
+OE0009,2026-04-08,Pendrive,Accesorios,5,8000,Oeste
+OE0010,2026-04-10,Mouse,PERIFÉRICOS ,3,12000,Oeste
+OE0010,2026-04-10,Joystick,PERIFÉRICOS ,1,38000,Oeste
+OE0010,2026-04-10,Auriculares,AUDIO ,2,35000,Oeste
+OE0011,2026-04-11,Parlante,,1,55000,Oeste
+OE0012,2026-04-12,Cable USB,Accesorios,10,2500,Oeste
+OE0013,2026-04-12,Disco SSD 1TB,Computación,1,90000,Oeste
+OE0013,2026-04-12,Cable USB,ACCESORIOS ,9,2500,Oeste
+OE0014,2026-04-12,Pilas AA x4,Accesorios,5,3500,Oeste
+OE0014,2026-04-12,Hub USB-C,,2,25000,Oeste
+OE0014,2026-04-12,Mousepad XL,Accesorios PC,1,9000,Oeste
+OE0015,2026-04-12,Pilas AA x4,Accesorios,3,3500,Oeste
+OE0016,2026-04-14,Joystick,perifericos,2,38000,Oeste
+OE0016,2026-04-14,Impresora,,1,180000,Oeste
+OE0017,2026-04-21,Mouse,PERIFÉRICOS ,3,12000,Oeste
+OE0017,2026-04-21,Pendrive,accesorios,2,8000,Oeste
+OE0017,2026-04-21,Hub USB-C,accesorios,1,25000,Oeste
+OE0018,2026-04-21,Disco SSD 1TB,Computación,1,90000,Oeste
+OE0018,2026-04-21,Hub USB-C,Otros,1,25000,Oeste
+OE0018,2026-04-21,Auriculares,Audio,1,35000,Oeste
+OE0019,2026-04-22,Auriculares,Audio,2,35000,Oeste
+OE0019,2026-04-22,Joystick,Periféricos,1,38000,Oeste
+OE0019,2026-04-22,Placa de sonido USB,audio,1,22000,Oeste
+OE0020,2026-04-22,Pilas AA x4,Accesorios,5,3500,Oeste
+OE0020,2026-04-22,Pendrive,,4,8000,Oeste
+OE0021,2026-04-22,Placa de sonido USB,Audio,1,22000,Oeste
+OE0021,2026-04-22,Hub USB-C,Accesorios PC,1,25000,Oeste
+OE0022,2026-04-22,Joystick,perifericos,1,38000,Oeste
+OE0023,2026-04-28,Teclado,Periféricos,2,30000,Oeste
+OE0023,2026-04-28,Soporte para monitor,Accesorios,2,15000,Oeste
+OE0023,2026-04-28,Placa de sonido USB,audio,1,22000,Oeste
+OE0024,2026-04-30,Funda para teclado,Accesorios,1,7000,Oeste
+OE0024,2026-04-30,Soporte para monitor,Accesorios,1,15000,Oeste
+OE0025,2026-05-02,Notebook,COMPUTACIÓN ,1,850000,Oeste
+OE0025,2026-05-02,Pilas AA x4,ACCESORIOS ,4,3500,Oeste
+OE0025,2026-05-02,Disco SSD 1TB,Computación,1,90000,Oeste
+OE0026,2026-05-03,Mouse,Periféricos,1,12000,Oeste
+OE0026,2026-05-03,Soporte para monitor,Accesorios,2,15000,Oeste
+OE0027,2026-05-04,Pilas AA x4,Accesorios,2,3500,Oeste
+OE0027,2026-05-04,Mousepad XL,Accesorios,3,9000,Oeste
+OE0028,2026-05-04,Notebook,Computación,1,850000,Oeste
+OE0029,2026-05-07,Pilas AA x4,ACCESORIOS ,2,3500,Oeste
+OE0029,2026-05-07,Hub USB-C,,2,25000,Oeste
+OE0029,2026-05-07,Cable USB,accesorios,5,2500,Oeste
+OE0030,2026-05-09,Teclado,perifericos,2,30000,Oeste
+OE0030,2026-05-09,Funda para teclado,Accesorios,2,7000,Oeste
+OE0031,2026-05-10,Mousepad XL,Accesorios,3,9000,Oeste
+OE0032,2026-05-12,Soporte para monitor,Accesorios,2,15000,Oeste
+OE0033,2026-05-13,Mousepad XL,Accesorios,2,9000,Oeste
+OE0033,2026-05-13,Hub USB-C,Varios,2,25000,Oeste
+OE0033,2026-05-13,Pilas AA x4,ACCESORIOS ,6,3500,Oeste
+OE0034,2026-05-13,Pilas AA x4,Accesorios,1,3500,Oeste
+OE0035,2026-05-15,Joystick,Periféricos,2,38000,Oeste
+OE0036,2026-05-16,Hub USB-C,accesorios,2,25000,Oeste
+OE0037,2026-05-16,Pendrive,Accesorios PC,2,8000,Oeste
+OE0037,2026-05-16,Monitor,Computación,2,260000,Oeste
+OE0038,2026-05-16,Pendrive,Varios,4,8000,Oeste
+OE0038,2026-05-16,Mousepad XL,,1,9000,Oeste
+OE0039,2026-05-18,Teclado,Periféricos,2,30000,Oeste
+OE0039,2026-05-18,Cable USB,Accesorios,10,2500,Oeste
+OE0039,2026-05-18,Disco SSD 1TB,Computación,1,90000,Oeste
+OE0040,2026-05-19,Mousepad XL,Accesorios,1,9000,Oeste
+OE0041,2026-05-21,Pilas AA x4,accesorios,3,3500,Oeste
+OE0041,2026-05-21,Mousepad XL,Accesorios,2,9000,Oeste
+OE0041,2026-05-21,Monitor,Computación,2,260000,Oeste
+OE0042,2026-05-23,Monitor,Gaming,2,260000,Oeste
+OE0042,2026-05-23,Mouse,,3,12000,Oeste
+OE0042,2026-05-23,Funda para teclado,Gaming,2,7000,Oeste
+OE0043,2026-05-24,Teclado,Periféricos,2,30000,Oeste
+OE0043,2026-05-24,Hub USB-C,Accesorios,1,25000,Oeste
+OE0044,2026-05-26,Cargador para notebook,Accesorios,1,32000,Oeste
+OE0045,2026-05-29,Pendrive,Accesorios,5,8000,Oeste
+OE0046,2026-05-29,Hub USB-C,accesorios,1,25000,Oeste
+OE0046,2026-05-29,Cable USB,,1,2500,Oeste
+OE0047,2026-05-31,Mouse,Periféricos,1,12000,Oeste
+OE0047,2026-05-31,Webcam,perifericos,1,45000,Oeste
+OE0047,2026-05-31,Disco SSD 1TB,Computación,1,90000,Oeste
+OE0048,2026-06-02,Mousepad XL,Gaming,1,9000,Oeste
+OE0048,2026-06-02,Micrófono USB,audio,1,40000,Oeste
+OE0048,2026-06-02,Pendrive,ACCESORIOS ,4,8000,Oeste
+OE0049,2026-06-03,Auriculares,AUDIO ,1,35000,Oeste
+OE0049,2026-06-03,Cable USB,Accesorios,6,2500,Oeste
+OE0050,2026-06-03,Hub USB-C,ACCESORIOS ,2,25000,Oeste
+OE0051,2026-06-05,Disco SSD 1TB,Computación,1,90000,Oeste
+OE0051,2026-06-05,Micrófono USB,,1,40000,Oeste
+OE0051,2026-06-05,Pilas AA x4,Otros,3,3500,Oeste
+OE0052,2026-06-05,Cable USB,,9,2500,Oeste
+OE0052,2026-06-05,Pilas AA x4,Accesorios,7,3500,Oeste
+OE0053,2026-06-05,Pilas AA x4,ACCESORIOS ,1,3500,Oeste
+OE0053,2026-06-05,Placa de sonido USB,AUDIO ,1,22000,Oeste
+OE0054,2026-06-11,Cable USB,Accesorios,3,2500,Oeste
+OE0055,2026-06-11,Cable USB,ACCESORIOS ,1,2500,Oeste
+OE0055,2026-06-11,Hub USB-C,Accesorios PC,1,25000,Oeste
+OE0056,2026-06-13,Micrófono USB,,1,40000,Oeste
+OE0056,2026-06-13,Pendrive,Accesorios,5,8000,Oeste
+OE0056,2026-06-13,Cable USB,accesorios,9,2500,Oeste
+OE0057,2026-06-14,Placa de sonido USB,Audio,1,22000,Oeste
+OE0057,2026-06-14,Cable USB,Accesorios,3,2500,Oeste
+OE0057,2026-06-14,Mousepad XL,Accesorios,1,9000,Oeste
+OE0058,2026-06-14,Auriculares,AUDIO ,2,35000,Oeste
+OE0058,2026-06-14,Parlante,AUDIO ,2,55000,Oeste
+OE0059,2026-06-15,Mousepad XL,,3,9000,Oeste
+OE0059,2026-06-15,Disco SSD 1TB,Computación,1,90000,Oeste
+OE0059,2026-06-15,Soporte para monitor,accesorios,2,15000,Oeste
+OE0060,2026-06-16,Micrófono USB,AUDIO ,1,40000,Oeste
+OE0061,2026-06-18,Tableta digitalizadora,PERIFÉRICOS ,1,95000,Oeste
+OE0061,2026-06-18,Micrófono USB,Audio,1,40000,Oeste
+OE0062,2026-06-19,Pendrive,Accesorios,2,8000,Oeste
+OE0062,2026-06-19,Tableta digitalizadora,Periféricos,1,95000,Oeste
+OE0063,2026-06-20,Micrófono USB,audio,1,40000,Oeste
+OE0063,2026-06-20,Soporte para monitor,Accesorios,1,15000,Oeste
+OE0064,2026-06-20,Cable USB,Accesorios,5,2500,Oeste
+OE0064,2026-06-20,Hub USB-C,,2,25000,Oeste
+OE0064,2026-06-20,Joystick,perifericos,2,38000,Oeste
+OE0065,2026-06-22,Pilas AA x4,Gaming,3,3500,Oeste
+OE0065,2026-06-22,Mousepad XL,Accesorios,2,9000,Oeste
+OE0066,2026-06-22,Cable USB,ACCESORIOS ,9,2500,Oeste
+OE0067,2026-06-23,Pendrive,Gaming,3,8000,Oeste
+OE0068,2026-06-25,Micrófono USB,Varios,1,40000,Oeste
+OE0068,2026-06-25,Placa de sonido USB,AUDIO ,1,22000,Oeste
+OE0069,2026-06-25,Soporte para monitor,,2,15000,Oeste
+OE0070,2026-06-30,Micrófono USB,Audio,1,40000,Oeste
+OE0070,2026-06-30,Funda para teclado,accesorios,2,7000,Oeste
+OE0070,2026-06-30,Cargador para notebook,Accesorios,1,32000,Oeste

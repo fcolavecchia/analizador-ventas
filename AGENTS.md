@@ -17,6 +17,9 @@
 
 - No modificar nada dentro de `data/`.
 - No modificar `tests/aceptacion/`: son los tests del docente.
+- No modificar `revision/` ni `evaluacion/`: son la rúbrica del revisor y la evaluación del docente.
+- No usar `evaluacion/etiquetas.csv` para diseñar reglas ni prompts: es el set de evaluación.
+- Los tests no acceden a la red: lo que llama a una API se reemplaza por un doble en los tests.
 - Los tests propios van en `tests/` (fuera de `aceptacion/`).
 
 ## Verificación

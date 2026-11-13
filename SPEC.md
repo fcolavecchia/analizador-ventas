@@ -1,4 +1,4 @@
-# Analizador de ventas — v3
+# Analizador de ventas — v4
 
 ## Objetivo
 
@@ -55,6 +55,33 @@ Correspondencia con los campos del CSV:
 
 `status` puede ser `completed` o `cancelled`.
 
+### Catálogo de categorías (`--catalogo`, opcional)
+
+CSV con encabezado `producto,categoria`. Lo mantiene el equipo del comercio (no el programa). Cada producto
+aparece una sola vez y su categoría es una de las categorías válidas. Si no se cumple, el programa termina con un
+error claro.
+
+## Categorías
+
+Las únicas categorías válidas son estas cuatro:
+
+| Categoría | Qué incluye |
+|---|---|
+| `Computación` | Equipos y componentes de computadora: notebooks, monitores, impresoras, discos, memorias, placas de video, routers, tablets. |
+| `Audio` | Equipos que reproducen o capturan sonido: auriculares, parlantes, micrófonos, placas de sonido. |
+| `Periféricos` | Dispositivos de entrada o captura que se conectan a la computadora: teclados, mouse, webcams, joysticks, tabletas digitalizadoras. |
+| `Accesorios` | Complementos de otro equipo y consumibles: cables, adaptadores, hubs, soportes, fundas, cargadores, mousepads, pendrives, pilas. |
+
+La categoría de cada línea se resuelve así, en este orden:
+
+1. Si el producto está en el catálogo, se usa la categoría del catálogo (aunque la línea diga otra cosa).
+2. Si no, se usa la categoría de la línea (`categoria` o `category`) si coincide con una válida **sin distinguir
+   mayúsculas, tildes ni espacios al principio o al final** (`" perifericos"` → `Periféricos`).
+3. Si no, la línea queda en la categoría **`Sin clasificar`** y el producto se informa en `revision.csv`.
+
+La categoría solo afecta la facturación por categoría y `revision.csv`. Ninguna línea se descarta por su
+categoría: la facturación total, los tickets, el mensual y el ranking no cambian.
+
 ## Definiciones
 
 - **Importe de una línea** = `cantidad * precio_unitario`.
@@ -66,7 +93,8 @@ Correspondencia con los campos del CSV:
 - **Órdenes canceladas** (`status == "cancelled"`): se excluyen por completo. No suman facturación, ni unidades, ni cuentan como ticket.
 - **Duplicados**: no se esperan. Los identificadores del CSV y del JSON no se superponen. No se deduplica.
 - Los productos se identifican por nombre exacto en ambas fuentes.
-- **Facturación por categoría**: facturación y unidades agrupadas por `categoria`. Se ordena por facturación
+- **Facturación por categoría**: facturación y unidades agrupadas por la categoría resuelta (ver
+  *Categorías*), incluida `Sin clasificar` si hay líneas en esa situación. Se ordena por facturación
   descendente; si dos categorías facturan lo mismo, alfabéticamente por nombre. Solo se listan las categorías con
   ventas. Las órdenes canceladas no cuentan, igual que en el resto de los cálculos.
 - Los importes se informan redondeados a 2 decimales.
@@ -76,8 +104,10 @@ Correspondencia con los campos del CSV:
 Desde la raíz del repositorio:
 
 ```
-uv run python -m ventas <archivo> [<archivo> ...] --salida <directorio>
+uv run python -m ventas <archivo> [<archivo> ...] --salida <directorio> [--catalogo <archivo>]
 ```
+
+- Sin `--catalogo`, la resolución de categorías empieza en el paso 2.
 
 - Crea `<directorio>` si no existe.
 - Imprime un resumen legible por consola (formato libre).
@@ -85,7 +115,7 @@ uv run python -m ventas <archivo> [<archivo> ...] --salida <directorio>
 
 ## Salidas
 
-Las de v2, más `categorias.csv`.
+Las de v3, más `revision.csv`.
 
 `<directorio>/mensual.csv`, ordenado por mes ascendente:
 
@@ -114,11 +144,48 @@ categoria,facturacion,unidades
 Computación,1300000.00,3
 ```
 
+`<directorio>/revision.csv`: los pares distintos (producto, categoría original) de las líneas que quedaron en
+`Sin clasificar`, ordenados por producto y después por categoría original. La categoría original es el texto
+tal como vino en el archivo. Se escribe siempre; si no hay nada para revisar, queda solo el encabezado.
+
+```
+producto,categoria_original
+Hub USB-C,
+Soporte para monitor,Varios
+```
+
+## Herramienta de propuestas (fuera del análisis)
+
+El programa **no** clasifica productos por su cuenta. Para ayudar a la persona que mantiene el catálogo hay una
+herramienta aparte que **propone** categorías:
+
+```
+uv run python -m ventas.proponer <entrada.csv> --metodo reglas|llm --salida <propuestas.csv>
+```
+
+- `<entrada.csv>`: cualquier CSV con una columna `producto` (sirven `revision.csv` y
+  `evaluacion/etiquetas.csv`). Las demás columnas se ignoran. Cada producto distinto se propone una vez.
+- `<propuestas.csv>`: `producto,categoria,confianza`, en el orden en que aparecen los productos en la entrada.
+  `categoria` es una de las cuatro válidas o queda vacía (sin propuesta). `confianza` es un número entre 0 y 1.
+- `--metodo reglas`: palabras clave, sin red. Si ninguna regla aplica, `categoria` vacía y `confianza` 0.
+- `--metodo llm`: un modelo de lenguaje vía la API de OpenAI. El modelo se toma de la variable de entorno
+  `MODELO_LLM` y la clave de `OPENAI_API_KEY`. El modelo recibe la tabla de categorías de esta especificación y
+  devuelve categoría y confianza para cada producto. Nunca recibe las etiquetas de `evaluacion/`.
+- La herramienta no modifica el catálogo: una persona revisa las propuestas y actualiza el catálogo a mano.
+- Los tests no llaman a la API.
+
+La calidad de las propuestas se mide con el script del docente:
+
+```
+python3 evaluacion/evaluar.py evaluacion/etiquetas.csv <propuestas.csv> [--umbral 0.8]
+```
+
 ## Restricciones
 
 - No modificar los archivos de entrada.
 - Python ≥ 3.12, proyecto gestionado con `uv`.
 - Ejecutar el programa solo con el CSV debe dar los mismos resultados que en v1.
+- Las fuentes de v1 a v3 dan los mismos resultados con o sin `--catalogo data/catalogo_categorias.csv`.
 
 ## Criterios de aceptación
 
@@ -127,4 +194,6 @@ Computación,1300000.00,3
 - Combinar fuentes equivale a sumar sus resultados (facturación, tickets, meses).
 - Con los casos mínimos de `tests/aceptacion/datos/` (calculados a mano), `categorias.csv` coincide con lo esperado.
 - La facturación por categoría suma la facturación total.
-- `uv run pytest` pasa sin errores.
+- Con `tests/aceptacion/datos/caso_oeste.csv` y `catalogo_minimo.csv` (calculados a mano), `categorias.csv` y
+  `revision.csv` coinciden con lo esperado, con y sin catálogo.
+- `uv run pytest` pasa sin errores, sin acceso a la red.

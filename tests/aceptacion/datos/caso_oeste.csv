@@ -1,0 +1,8 @@
+id_ticket,fecha,producto,categoria,cantidad,precio_unitario,sucursal
+OE1,2026-04-02,Mouse,perifericos,2,12000,Oeste
+OE1,2026-04-02,Micrófono USB,AUDIO ,1,40000,Oeste
+OE2,2026-04-05,Hub USB-C,,1,25000,Oeste
+OE3,2026-05-10,Soporte para monitor,Varios,2,15000,Oeste
+OE3,2026-05-10,Cable USB,Accesorios PC,3,2500,Oeste
+OE4,2026-05-11,Disco SSD 1TB,computacion,1,90000,Oeste
+OE4,2026-05-11,Teclado,Audio,1,30000,Oeste

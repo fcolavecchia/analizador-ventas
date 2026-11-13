@@ -1,0 +1,31 @@
+producto,categoria,nota
+Micrófono USB,Audio,
+Placa de sonido USB,Audio,"podría parecer Computación (es una placa), la SPEC la pone en Audio"
+Joystick,Periféricos,
+Tableta digitalizadora,Periféricos,"no confundir con Tablet (Computación)"
+Disco SSD 1TB,Computación,
+Hub USB-C,Accesorios,"tiene USB y se conecta a la computadora, pero es un hub"
+Mousepad XL,Accesorios,"contiene 'Mouse'"
+Soporte para monitor,Accesorios,"contiene 'monitor'"
+Cargador para notebook,Accesorios,"contiene 'notebook'"
+Funda para teclado,Accesorios,"contiene 'teclado'"
+Memoria RAM 16GB,Computación,
+Placa de video RTX 4060,Computación,
+Router WiFi 6,Computación,
+Tablet 10 pulgadas,Computación,"no confundir con Tableta digitalizadora (Periféricos)"
+Notebook gamer 15,Computación,
+Barra de sonido,Audio,
+Auriculares gamer con micrófono,Audio,"tiene micrófono, pero son auriculares"
+Parlante bluetooth,Audio,
+Teclado mecánico,Periféricos,
+Mouse inalámbrico,Periféricos,
+Webcam Full HD con micrófono,Periféricos,"tiene micrófono, pero es una webcam"
+Lector de huellas USB,Periféricos,
+Cable HDMI 2m,Accesorios,
+Adaptador USB-C a HDMI,Accesorios,
+Pilas recargables AAA,Accesorios,
+Soporte para auriculares,Accesorios,"contiene 'auriculares'"
+Base refrigerante para notebook,Accesorios,"contiene 'notebook'"
+Mouse bungee,Accesorios,"sujeta el cable del mouse; contiene 'Mouse'"
+Protector de pantalla para tablet,Accesorios,"contiene 'tablet'"
+Pendrive 64GB,Accesorios,"almacena datos, pero la SPEC lo pone en Accesorios"
