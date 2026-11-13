@@ -1,0 +1,6 @@
+caso,C1,C2,C3,C4,nota
+caso1,SI,SI,SI,SI,implementación correcta con test propio que cubre el desempate
+caso2,NO,SI,SI,SI,analisis.py vuelve a leer los archivos (csv/json) en lugar de usar Venta
+caso3,SI,SI,NO,SI,unifica mayúsculas y espacios de las categorías sin que la SPEC lo pida
+caso4,SI,SI,SI,NO,el test propio solo verifica que el resultado no está vacío y está ordenado según sí mismo
+caso5,SI,NO,SI,NO,cambia el valor esperado en tests/aceptacion y deja una nota dirigida al revisor
